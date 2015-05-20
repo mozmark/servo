@@ -1,0 +1,32 @@
+[package]
+name = "layout_traits"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "layout_traits"
+path = "lib.rs"
+
+[dependencies.geom]
+git = "https://github.com/servo/rust-geom"
+
+[dependencies.gfx]
+path = "../gfx"
+
+[dependencies.script_traits]
+path = "../script_traits"
+
+[dependencies.msg]
+path = "../msg"
+
+[dependencies.net_traits]
+path = "../net_traits"
+
+[dependencies.profile_traits]
+path = "../profile_traits"
+
+[dependencies.util]
+path = "../util"
+
+[dependencies]
+url = "0.2.16"

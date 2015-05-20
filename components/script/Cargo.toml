@@ -1,0 +1,81 @@
+[package]
+name = "script"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+build = "build.rs"
+
+[lib]
+name = "script"
+path = "lib.rs"
+
+[features]
+debugmozjs = ['js/debugmozjs']
+
+[dependencies.plugins]
+path = "../plugins"
+
+[dependencies.util]
+path = "../util"
+
+[dependencies.msg]
+path = "../msg"
+
+[dependencies.net_traits]
+path = "../net_traits"
+
+[dependencies.profile_traits]
+path = "../profile_traits"
+
+[dependencies.script_traits]
+path = "../script_traits"
+
+[dependencies.devtools_traits]
+path = "../devtools_traits"
+
+[dependencies.style]
+path = "../style"
+
+[dependencies.gfx]
+path = "../gfx"
+
+[dependencies.canvas]
+path = "../canvas"
+
+[dependencies.webdriver_traits]
+path = "../webdriver_traits"
+
+[dependencies.selectors]
+git = "https://github.com/servo/rust-selectors"
+
+[dependencies.geom]
+git = "https://github.com/servo/rust-geom"
+
+[dependencies.html5ever]
+git = "https://github.com/servo/html5ever"
+
+[dependencies.js]
+git = "https://github.com/servo/rust-mozjs"
+
+[dependencies.png]
+git = "https://github.com/servo/rust-png"
+
+[dependencies.string_cache]
+git = "https://github.com/servo/string-cache"
+
+[dependencies.string_cache_plugin]
+git = "https://github.com/servo/string-cache"
+
+[dependencies]
+encoding = "0.2"
+url = "0.2.16"
+time = "0.1.12"
+bitflags = "*"
+rustc-serialize = "*"
+libc = "*"
+hyper = "0.4"
+cssparser = "0.3.1"
+unicase = "0.1"
+num = "0.1.24"
+websocket = "0.11.0"
+uuid = "0.1.16"

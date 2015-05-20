@@ -1,0 +1,71 @@
+[package]
+name = "compositing"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "compositing"
+path = "lib.rs"
+
+[dependencies.gfx]
+path = "../gfx"
+
+[dependencies.layout_traits]
+path = "../layout_traits"
+
+[dependencies.script_traits]
+path = "../script_traits"
+
+[dependencies.msg]
+path = "../msg"
+
+[dependencies.net]
+path = "../net"
+
+[dependencies.profile_traits]
+path = "../profile_traits"
+
+[dependencies.net_traits]
+path = "../net_traits"
+
+[dependencies.style]
+path = "../style"
+
+[dependencies.util]
+path = "../util"
+
+[dependencies.webdriver_traits]
+path = "../webdriver_traits"
+
+[dependencies.devtools_traits]
+path = "../devtools_traits"
+
+[dependencies.azure]
+git = "https://github.com/servo/rust-azure"
+
+[dependencies.geom]
+git = "https://github.com/servo/rust-geom"
+
+[dependencies.layers]
+git = "https://github.com/servo/rust-layers"
+
+[dependencies.png]
+git = "https://github.com/servo/rust-png"
+
+[dependencies.core_graphics]
+git = "https://github.com/servo/rust-core-graphics"
+
+[dependencies.core_text]
+git = "https://github.com/servo/rust-core-text"
+
+[dependencies.gleam]
+git = "https://github.com/servo/gleam"
+
+[dependencies.clipboard]
+git = "https://github.com/servo/rust-x11-clipboard"
+
+[dependencies]
+num = "0.1.24"
+url = "0.2.16"
+time = "0.1.17"
+libc = "*"

@@ -1,0 +1,12 @@
+[package]
+name = "plugins"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "plugins"
+path = "lib.rs"
+plugin = true
+
+[dependencies.tenacious]
+git = "https://github.com/Manishearth/rust-tenacious.git"

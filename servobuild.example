@@ -1,0 +1,45 @@
+# Copy this file to .servobuild in the Servo root directory
+# Be sure to set the cache-dir correctly, otherwise extra snapshots
+# may get downloaded
+
+# Paths starting with "./" are relative to the repo root
+
+# Tool options
+[tools]
+# Where Rust compiler snapshots and other downloads will be stored.  Can be
+# shared by multiple Servo reposities.  Defaults to <servo-repo>/.servo
+cache-dir = "./.servo"
+
+# Where cargo stores all of its clones  Defaults to <servo-repo>/.cargo
+cargo-home-dir = "./.cargo"
+
+# If system-rust is true, will use rustc/rustdoc from the path, or if
+# rust-root is specified, will make sure that rust-root is in the path
+# when building. Similarly for Cargo. This takes care of PATH as well as
+# [DY]LD_LIBRARY_PATH.
+system-rust = false
+rust-root = "/path/to/rust"
+system-cargo = false
+cargo-root = "/path/to/cargo"
+
+[build]
+# Set "mode = dev" or use `mach build --dev` to build the project with warning.
+# or Set "mode = release" or use `mach build --release` for optimized build.
+mode = "dev"
+# Set "android = true" or use `mach build --android` to build the Android app.
+android = false
+# Set "debug-mozjs" or use `mach build --debug-mozjs` to build a debug spidermonkey.
+debug-mozjs = false
+
+# Android information
+[android]
+sdk = "/opt/android-sdk"
+ndk = "/opt/android-ndk"
+toolchain = "/opt/android-toolchain"
+
+# Gonk information
+# Please fill the ndk/toolchain for android too
+[gonk]
+# Path to B2G repo and build
+b2g = "/opt/B2G"
+product = "flame"

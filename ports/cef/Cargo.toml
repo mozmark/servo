@@ -1,0 +1,92 @@
+[package]
+name = "embedding"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "embedding"
+path = "lib.rs"
+crate-type = ["dylib"]
+
+[dependencies.servo]
+path = "../../components/servo"
+
+[dependencies.glutin_app]
+path = "../glutin"
+
+[dependencies.plugins]
+path = "../../components/plugins"
+
+[dependencies.compositing]
+path = "../../components/compositing"
+
+[dependencies.gfx]
+path = "../../components/gfx"
+
+[dependencies.script]
+path = "../../components/script"
+
+[dependencies.script_traits]
+path = "../../components/script_traits"
+
+[dependencies.net]
+path = "../../components/net"
+
+[dependencies.msg]
+path = "../../components/msg"
+
+[dependencies.util]
+path = "../../components/util"
+
+[dependencies.style]
+path = "../../components/style"
+
+[dependencies.devtools]
+path = "../../components/devtools"
+
+[dependencies.azure]
+git = "https://github.com/servo/rust-azure"
+
+[dependencies.geom]
+git = "https://github.com/servo/rust-geom"
+
+[dependencies.js]
+git = "https://github.com/servo/rust-mozjs"
+
+[dependencies.layers]
+git = "https://github.com/servo/rust-layers"
+
+[dependencies.png]
+git = "https://github.com/servo/rust-png"
+
+[dependencies.stb_image]
+git = "https://github.com/servo/rust-stb-image"
+
+[dependencies.core_foundation]
+git = "https://github.com/servo/rust-core-foundation"
+
+[dependencies.core_graphics]
+git = "https://github.com/servo/rust-core-graphics"
+
+[dependencies.core_text]
+git = "https://github.com/servo/rust-core-text"
+
+[dependencies.cocoa]
+git = "https://github.com/servo/rust-cocoa"
+
+[dependencies.gleam]
+git = "https://github.com/servo/gleam"
+
+[dependencies.cgl]
+git = "https://github.com/servo/rust-cgl"
+
+[dependencies]
+url = "*"
+libc = "*"
+objc = "0.1"
+
+[target.i686-unknown-linux-gnu.dependencies]
+x11 = "*"
+
+[target.x86_64-unknown-linux-gnu.dependencies]
+x11 = "*"

@@ -1,0 +1,41 @@
+[package]
+
+name = "msg"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "msg"
+path = "lib.rs"
+
+[dependencies.style]
+path = "../style"
+
+[dependencies.util]
+path = "../util"
+
+[dependencies.webdriver_traits]
+path = "../webdriver_traits"
+
+[dependencies.azure]
+git = "https://github.com/servo/rust-azure"
+
+[dependencies.geom]
+git = "https://github.com/servo/rust-geom"
+
+[dependencies.layers]
+git = "https://github.com/servo/rust-layers"
+
+[dependencies.core_foundation]
+git = "https://github.com/servo/rust-core-foundation"
+
+[dependencies.io_surface]
+git = "https://github.com/servo/rust-io-surface"
+
+[dependencies.png]
+git = "https://github.com/servo/rust-png"
+
+[dependencies]
+url = "0.2.16"
+bitflags = "*"
+hyper = "0.4"

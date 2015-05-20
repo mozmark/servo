@@ -12,7 +12,7 @@ pull requests. Each pull request will be reviewed by a core contributor
 given feedback for changes that would be required. All contributions should
 follow this format, even those from core contributors.
 
-If you're looking for easy bugs, have a look at the [E-Easy issue tag](https://github.com/mozilla/servo/issues?labels=E-easy&page=1&state=open) on GitHub.
+If you're looking for easy bugs, have a look at the [E-Easy issue tag](https://github.com/servo/servo/labels/E-easy) on GitHub.
 
 ## Pull Request Checklist
 
@@ -28,14 +28,14 @@ If you're looking for easy bugs, have a look at the [E-Easy issue tag](https://g
   comment, or you can ask for a review in `#servo` on `irc.mozilla.org`.
 
 - Add tests relevant to the fixed bug or new feature.  For a DOM change this
-  will usually be a content test; for layout, a reftest.  See our [testing
-  guide](https://github.com/mozilla/servo/wiki/Testing) for more information.
+  will usually be a web platform test; for layout, a reftest.  See our [testing
+  guide](https://github.com/servo/servo/wiki/Testing) for more information.
 
-For specific git instructions, see [GitHub & Critic PR handling 101](https://github.com/mozilla/servo/wiki/Github-&-Critic-PR-handling-101).
+For specific git instructions, see [GitHub & Critic PR handling 101](https://github.com/servo/servo/wiki/Github-&-Critic-PR-handling-101).
 
 ## Conduct
 
-We follow the [Rust Code of Conduct](https://github.com/mozilla/rust/wiki/Note-development-policy#wiki-conduct).
+We follow the [Rust Code of Conduct](http://www.rust-lang.org/conduct.html).
 
 
 ## Communication

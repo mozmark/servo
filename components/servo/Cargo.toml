@@ -1,0 +1,106 @@
+[package]
+
+name = "servo"
+version = "0.0.1"
+authors = ["The Servo Project Developers"]
+
+[lib]
+name = "servo"
+path = "lib.rs"
+crate-type = ["rlib"]
+
+[[bin]]
+name = "servo"
+path = "main.rs"
+test = false
+doc = false
+bench = false
+
+[dev-dependencies.gfx_tests]
+path = "../../tests/unit/gfx"
+
+[dev-dependencies.net_tests]
+path = "../../tests/unit/net"
+
+[dev-dependencies.script_tests]
+path = "../../tests/unit/script"
+
+[dev-dependencies.style_tests]
+path = "../../tests/unit/style"
+
+[dev-dependencies.util_tests]
+path = "../../tests/unit/util"
+
+[[test]]
+name = "reftest"
+path = "../../tests/reftest.rs"
+harness = false
+
+[dependencies.png]
+git = "https://github.com/servo/rust-png"
+
+[features]
+default = ["glutin_app", "window"]
+window = ["glutin_app/window"]
+headless = ["glutin_app/headless"]
+
+# Uncomment to profile on Linux:
+#
+# [profile.release]
+# opt-level = 3
+# debug = true
+# rpath = false
+# lto = false
+
+[dependencies.compositing]
+path = "../compositing"
+
+[dependencies.net]
+path = "../net"
+
+[dependencies.net_traits]
+path = "../net_traits"
+
+[dependencies.msg]
+path = "../msg"
+
+[dependencies.profile]
+path = "../profile"
+
+[dependencies.profile_traits]
+path = "../profile_traits"
+
+[dependencies.util]
+path = "../util"
+
+[dependencies.script]
+path = "../script"
+
+[dependencies.layout]
+path = "../layout"
+
+[dependencies.gfx]
+path = "../gfx"
+
+[dependencies.devtools]
+path = "../devtools"
+
+[dependencies.webdriver_server]
+path = "../webdriver_server"
+
+[dependencies.devtools_traits]
+path = "../devtools_traits"
+
+[dependencies.glutin_app]
+path = "../../ports/glutin"
+optional = true
+
+[dependencies.android_glue]
+path = "../../support/android-rs-glue/glue"
+optional = true
+
+[dependencies]
+url = "0.2.16"
+time = "0.1.12"
+bitflags = "*"
+libc = "*"

@@ -1,7 +1,8 @@
-The Servo Parallel Browser Project
+# The Servo Parallel Browser Project
 
-Servo is a prototype web browser engine written in the [Rust](https://github.com/mozilla/rust)
-language. It is currently developed on 64bit OS X and 64bit Linux.
+Servo is a prototype web browser engine written in the
+[Rust](https://github.com/rust-lang/rust) language. It is currently developed on
+64bit OS X, 64bit Linux, Android, and Gonk (Firefox OS).
 
 Servo welcomes contribution from everyone.  See
 [`CONTRIBUTING.md`](CONTRIBUTING.md) for help getting started.
@@ -11,79 +12,112 @@ Servo welcomes contribution from everyone.  See
 On OS X (homebrew):
 
 ``` sh
-brew install https://raw.github.com/Homebrew/homebrew-versions/master/autoconf213.rb
-brew install automake libtool pkg-config
+brew install automake pkg-config python cmake
+pip install virtualenv
 ```
 
 On OS X (MacPorts):
 
 ``` sh
-sudo port install autoconf213
+sudo port install python27 py27-virtualenv cmake
 ```
-    
+
 On Debian-based Linuxes:
 
 ``` sh
-sudo apt-get install autoconf2.13 curl freeglut3-dev libtool \
+sudo apt-get install curl freeglut3-dev \
     libfreetype6-dev libgl1-mesa-dri libglib2.0-dev xorg-dev \
-    msttcorefonts gperf g++ automake cmake
+    gperf g++ cmake python-virtualenv \
+    libssl-dev libbz2-dev libosmesa6-dev libxmu6 libxmu-dev
 ```
 
-On Fedora Core:
+On Fedora:
 
 ``` sh
-sudo yum install autoconf213 curl freeglut-devel libtool \
-    freetype-devel mesa-libGL-devel glib2-devel libX11-devel \
-    gperf gcc-c++ rpm-build cabextract ttmkfdir
-pushd .
-cd /tmp
-wget http://corefonts.sourceforge.net/msttcorefonts-2.5-1.spec
-rpmbuild -bb msttcorefonts-2.5-1.spec
-sudo yum install $HOME/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm 
-popd
+sudo yum install curl freeglut-devel libtool gcc-c++ libXi-devel \
+    freetype-devel mesa-libGL-devel glib2-devel libX11-devel libXrandr-devel gperf \
+    fontconfig-devel cabextract ttmkfdir python python-virtualenv expat-devel \
+    rpm-build openssl-devel cmake bzip2-devel libXcursor-devel libXmu-devel mesa-libOSMesa-devel
+```
+
+On Arch Linux:
+
+``` sh
+sudo pacman -S --needed base-devel git python2 python2-virtualenv mesa cmake bzip2 libxmu
 ```
 
 Cross-compilation for Android:
 
-Basically, pre-installed Android tools are needed.
-See wiki for [details](https://github.com/mozilla/servo/wiki/Building-for-Android)
+Pre-installed Android tools are needed. See wiki for
+[details](https://github.com/mozilla/servo/wiki/Building-for-Android)
 
-Servo builds its own copy of Rust, so there is no need to provide a Rust
-compiler.
+Using Virtualbox:
+
+If you're running servo on a guest machine, make sure 3D Acceleration is switched off ([#5643](https://github.com/servo/servo/issues/5643))
+
+## The Rust compiler
+
+Servo's build system automatically downloads a snapshot Rust compiler to build itself.
+This is normally a specific revision of Rust upstream, but sometimes has a
+backported patch or two.
+If you'd like to know the snapshot revision of Rust which we use, see
+`./rust-snapshot-hash`.
 
 ## Building
 
-Servo cannot be built in-tree; you must create a directory in which to run
-configure and make and place the build artifacts.
+Servo is built with Cargo, the Rust package manager. We also use Mozilla's
+Mach tools to orchestrate the build and other tasks.
+
+### Normal build
+
+
+To build Servo in development mode.  This is useful for development, but
+the resulting binary is very slow.
 
 ``` sh
-git clone https://github.com/mozilla/servo.git
+git clone https://github.com/servo/servo
 cd servo
-mkdir -p build && cd build
-../configure
-make && make check
-./servo ../src/test/html/about-mozilla.html
+./mach build --dev
+./mach run tests/html/about-mozilla.html
 ```
 
-###Building for Android target
+For benchmarking, performance testing, or
+real-world use, add the `--release` flag to create an optimized build:
 
 ``` sh
-git clone https://github.com/mozilla/servo.git
-cd servo
-mkdir -p build && cd build
-../configure --target=arm-linux-androideabi --android-cross-path=<Android toolchain path> --android-ndk-path=<Android NDK path> --android-sdk-path=<Android SDK path>
-make
-(or make package)
+./mach build --release
+./mach run --release tests/html/about-mozilla.html
+```
 
+### Building for Android target
+
+``` sh
+git clone https://github.com/servo/servo
+cd servo
+ANDROID_TOOLCHAIN=/path/to/toolchain ANDROID_NDK=/path/to/ndk PATH=$PATH:/path/to/toolchain/bin ./mach build --android
+cd ports/android
+ANDROID_SDK=/path/to/sdk make install
+```
+
+Rather than setting the `ANDROID_*` environment variables every time, you can
+also create a `.servobuild` file and then edit it to contain the correct paths
+to the Android SDK/NDK tools:
+
+```
+cp servobuild.example .servobuild
+# edit .servobuild
 ```
 
 ## Running
+
+Use `./mach run [url]` to run Servo.
+
 
 ### Commandline Arguments
 
 - `-p INTERVAL` turns on the profiler and dumps info to the console every
   `INTERVAL` seconds
-- `-s SIZE` sets the tile size for rendering; defaults to 512
+- `-s SIZE` sets the tile size for painting; defaults to 512
 - `-z` disables all graphical output; useful for running JS / layout tests
 
 ### Keyboard Shortcuts
@@ -97,15 +131,5 @@ make
 
 ## Developing
 
-There are lots of make targets you can use:
-
-- `make clean` - cleans Servo and its dependencies, but not Rust
-- `make clean-rust` - cleans Rust
-- `make clean-servo` - only cleans Servo itself (code in `src/components`)
-- `make clean-DEP` - cleans the dependency `DEP`. e.g. `make clean-rust-opengles`
-- `make bindings` - generate the Rust WebIDL bindings
-- `make DEP` - builds only the specified dependency. e.g. `make rust-opengles`
-- `make check-DEP` - build and run tests for specified dependency
-- `make package` - build and make app package for specific OS. e.g. apk file of Android
-
-The `make check-*` targets for running tests are listed [here](https://github.com/mozilla/servo/wiki/Testing)
+There are lots of mach commands you can use. You can list them with `./mach
+--help`.
